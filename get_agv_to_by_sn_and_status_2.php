@@ -19,7 +19,7 @@ $serialNumberAGV = $_GET['serialNumberAGV'];
 // Подготовленный запрос для предотвращения SQL-инъекций
 $sql = "SELECT * FROM $table_name WHERE serialNumberAGV = ? AND statusTo = ?";
 $stmt = $connect->prepare($sql);
-$statusTo = '0'; // Указываем статус, который нас интересует
+$statusTo = '2'; // Указываем статус, который нас интересует
 $stmt->bind_param("si", $serialNumberAGV, $statusTo); // "si" означает строка и целое число
 $stmt->execute();
 $result = $stmt->get_result();

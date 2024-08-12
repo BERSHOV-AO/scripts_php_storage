@@ -19,7 +19,7 @@ $serialNumberAGV = $_GET['serialNumberAGV'];
 // Подготовленный запрос для предотвращения SQL-инъекций
 $sql = "SELECT * FROM $table_name WHERE serialNumberAGV = ? AND statusTo = ?";
 $stmt = $connect->prepare($sql);
-$statusTo = '0'; // Указываем статус, который нас интересует
+$statusTo = '1'; // Указываем статус, который нас интересует
 $stmt->bind_param("si", $serialNumberAGV, $statusTo); // "si" означает строка и целое число
 $stmt->execute();
 $result = $stmt->get_result();
@@ -47,11 +47,3 @@ if($result->num_rows > 0) {
         $data[] = $toName;
     }
 }
-
-// Возвращаем данные (пустой массив, если ничего не найдено)
-echo json_encode($data);
-
-// Закрываем соединение
-$stmt->close();
-$connect->close();
-?>

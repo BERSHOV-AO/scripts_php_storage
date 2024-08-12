@@ -25,7 +25,7 @@ if($result->num_rows > 0) {
         $nameTo = $row['nameTo'];
         $serialNumberAGV = $row['serialNumberAGV'];
         $frequencyOfTo = $row['frequencyOfTo'];
-        $statusTo = (bool)$row['statusTo'];
+        $statusTo = $row['statusTo'];
         $dataTo = $row['dataTo'];
 
         $toName = array(
