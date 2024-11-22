@@ -14,11 +14,12 @@ if($connect->connect_error) {
 
 $data = json_decode(file_get_contents("php://input"), true);
 
+$name = mysqli_real_escape_string($connect, $data['name']);
+$surname = mysqli_real_escape_string($connect, $data['surname']);
 $login = mysqli_real_escape_string($connect, $data['login']);
-$email = mysqli_real_escape_string($connect, $data['email']);
 $pass = mysqli_real_escape_string($connect, $data['pass']);
 
-$sql = "INSERT INTO $table_name (login, email, pass) VALUES ('$login', '$email', '$pass')";
+$sql = "INSERT INTO $table_name (name, surname, login, pass) VALUES ('$name', '$surname', '$login', '$pass')";
 
 if ($connect->query($sql) === TRUE) {
     echo json_encode(array("message" => "User saved!"));
