@@ -4,13 +4,16 @@ $server_name = "localhost";
 $user_name = "root";
 $password = "";
 $db_name = "agv_db";
-$table_name = "agv_1100_2p";
 
+// Создаем соединение с базой данных
 $connect = new mysqli($server_name, $user_name, $password, $db_name);
 
 if($connect->connect_error) {
     die("Connection failed: " . $connect->connect_error);
 }
+
+// Получаем имя таблицы из запроса
+$table_name = $_GET['table'];
 
 $sql = "SELECT * FROM $table_name";
 $result = $connect->query($sql);
