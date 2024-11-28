@@ -17,10 +17,11 @@ if($connect->connect_error) {
 $serialNumberAGV = $_GET['serialNumberAGV'];
 
 // Подготовленный запрос для предотвращения SQL-инъекций
-$sql = "SELECT * FROM $table_name WHERE serialNumberAGV = ? AND statusTo = ?";
+$sql = "SELECT * FROM $table_name WHERE serialNumberAGV = ? AND statusTo IN (?, ?)";
 $stmt = $connect->prepare($sql);
-$statusTo = '0'; // Указываем статус, который нас интересует
-$stmt->bind_param("si", $serialNumberAGV, $statusTo); // "si" означает строка и целое число
+$statusTo1 = '0'; // Первый статус
+$statusTo2 = '2'; // Второй статус
+$stmt->bind_param("ssi", $serialNumberAGV, $statusTo1, $statusTo2); // "ssi" означает строка, строка, целое число
 $stmt->execute();
 $result = $stmt->get_result();
 

@@ -20,7 +20,7 @@ $serialNumberAGV = $_GET['serialNumberAGV'];
 $sql = "SELECT * FROM $table_name WHERE serialNumberAGV = ? AND statusTo = ?";
 $stmt = $connect->prepare($sql);
 $statusTo = '2'; // Указываем статус, который нас интересует
-$stmt->bind_param("si", $serialNumberAGV, $statusTo); // "si" означает строка и целое число
+$stmt->bind_param("ss", $serialNumberAGV, $statusTo); // "ss" означает две строки
 $stmt->execute();
 $result = $stmt->get_result();
 
